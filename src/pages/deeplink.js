@@ -11,6 +11,7 @@ import NavigationIcon from '@material-ui/icons/Navigation'
 import $ from 'jquery'
 
 import { useSnackbar } from 'notistack'
+const ApiUrl = "http://145.220.75.192:3000"
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -69,7 +70,7 @@ export default function App () {
   useEffect(() => {
     const fetchResources = async () => {
       try {
-        const resources = await ky.get('/resources', { credentials: 'include', headers: { Authorization: 'Bearer ' + getLtik() } }).json()
+        const resources = await ky.get(ApiUrl + '/resources', { credentials: 'include', headers: { Authorization: 'Bearer ' + getLtik() } }).json()
         setDataset(resources)
       } catch (err) {
         console.log(err)
@@ -86,7 +87,7 @@ export default function App () {
         errorPrompt('Please select a resource.')
         return
       }
-      const form = await ky.post('/deeplink', { credentials: 'include', json: dataset[resource], headers: { Authorization: 'Bearer ' + getLtik() } }).text()
+      const form = await ky.post(ApiUrl + '/deeplink', { credentials: 'include', json: dataset[resource], headers: { Authorization: 'Bearer ' + getLtik() } }).text()
       $('body').append(form)
     } catch (err) {
       console.log(err)

@@ -24,6 +24,7 @@ import 'animate.css'
 import ky from 'ky'
 
 import { useSnackbar } from 'notistack'
+const ApiUrl = "http://145.220.75.192:3000"
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -101,7 +102,7 @@ export default function App () {
   useEffect(() => {
     const getInfo = async () => {
       try {
-        const launchInfo = await ky.get('/info', { credentials: 'include', headers: { Authorization: 'Bearer ' + getLtik() } }).json()
+        const launchInfo = await ky.get(ApiUrl + '/info', { credentials: 'include', headers: { Authorization: 'Bearer ' + getLtik() } }).json()
         setInfo(launchInfo)
       } catch (err) {
         console.log(err)

@@ -17,7 +17,7 @@ import HomeIcon from '@material-ui/icons/Home'
 import ky from 'ky'
 
 import { useSnackbar } from 'notistack'
-
+const ApiUrl = "http://145.220.75.192:3000"
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
@@ -113,7 +113,7 @@ export default function App () {
         grade: grade
       }
 
-      await ky.post('/grade', { credentials: 'include', json: body, headers: { Authorization: 'Bearer ' + getLtik() } })
+      await ky.post(ApiUrl + '/grade', { credentials: 'include', json: body, headers: { Authorization: 'Bearer ' + getLtik() } })
       successPrompt(grade)
     } catch (err) {
       console.log(err)
