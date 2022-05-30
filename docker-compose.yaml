@@ -6,9 +6,6 @@ services:
     container_name: client
     volumes:
       - ./build/ /usr/local/apache2/htdocs/
-    build:
-      context: .
-      dockerfile: ./Dockerfile
     restart: on-failure
     ports:
       - 5050:80
