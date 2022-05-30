@@ -5,7 +5,7 @@ services:
     image: httpd:2.4
     container_name: client
     volumes:
-      - ./build/ /usr/local/apache2/htdocs/
+      - ./build/:/usr/local/apache2/htdocs/
     restart: on-failure
     ports:
       - 5050:80
